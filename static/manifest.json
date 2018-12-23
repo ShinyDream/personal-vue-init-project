@@ -1,0 +1,13 @@
+{
+  "name": "My Mobile Website",
+  "short_name": "mobileWeb",
+  "start_url": "/",
+  "description": "My Simple Mobile Web App. ~ wait一段情",
+  "display": "standalone",
+  "theme_color": "#fff",
+  "background_color": "#fff",
+  "icon": {
+    "src": "icons/heart.svg",
+    "sizes": "48x48 72x72 96x96"
+  }
+}

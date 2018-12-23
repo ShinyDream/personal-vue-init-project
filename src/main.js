@@ -1,15 +1,10 @@
 import Vue from 'vue';
-import Router from './router';
+import Router from './router/index';
 import Vuetify from 'vuetify';
-import HomePage from '@/modules/HomePage';
 
 Vue.use(Vuetify);
 
 let mainVue = new Vue({
   el: "#homePage",
-  router: Router,
-  template: '<HomePage/>',
-  components: {
-    HomePage
-  }
+  router: Router
 });

@@ -1,7 +1,6 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
-// import HomePage from '@/modules/HomePage';
-const HomePage = () => {import('@/modules/HomePage')};
+const HomePage = () => import('@/modules/HomePage');
 
 Vue.use(VueRouter);
 
@@ -12,7 +11,8 @@ let routeMode = {
 let baseRoute = {
   routes: [
   {
-    path: '/',
+    path: '/home',
+    name: 'home',
     component: HomePage,
     meta: {
       keepAlive: true
@@ -20,7 +20,7 @@ let baseRoute = {
   },
   { // 路由不存在时,重定向到首页
     path: "*",
-    redirect: "/"
+    redirect: "/home"
   }
 ]
 }
@@ -28,5 +28,9 @@ let baseRoute = {
 let finalRoute = Object.assign(routeMode, baseRoute);
 
 let Router = new VueRouter(finalRoute);
+
+Router.beforeEach((from, to, next) => {
+  next();
+})
 
 export default Router;

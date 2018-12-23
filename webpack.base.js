@@ -3,9 +3,10 @@ const VueLoaderPlugin = require('vue-loader/lib/plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const HtmlWebpackPlugin =  require('html-webpack-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 
-const distPath = path.resolve(__dirname, '../dist');
-const srcPath = path.resolve(__dirname, '../src');
+const distPath = path.resolve(__dirname, './dist');
+const srcPath = path.resolve(__dirname, './src');
 
 module.exports = {
   mode: 'production',
@@ -34,7 +35,7 @@ module.exports = {
     }
   },
   plugins: [
-    new CleanWebpackPlugin(),
+    new CleanWebpackPlugin(['./dist']),
     new VueLoaderPlugin(),
     new HtmlWebpackPlugin({
       filename: 'index.html',
@@ -52,7 +53,12 @@ module.exports = {
     new ExtractTextPlugin({
       filename: path.posix.join('css', '[name]-[hash].css'),
       allChunks: true
-    })
+    }),
+    new CopyWebpackPlugin([{
+      from: path.resolve(__dirname, './static'),
+      to: distPath,
+      ignore: ['.*']
+    }])
   ],
   module: {
     rules: [
